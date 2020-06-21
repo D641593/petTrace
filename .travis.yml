@@ -13,4 +13,4 @@ install:
 # command to run tests
 script: 
   - python ./PointCalculationTest.py
-  - /tmp/sonar-scanner-cli-4.3.0.2102-linux/bin/sonar-scanner.bat -D"sonar.projectKey=D0641593" -D"sonar.sources=." -D"sonar.host.url=http://140.134.24.239:9000" -D"sonar.login=b6eea023dbf8bc6f615098e40c9148cd50eb7d27"
+  - /tmp/sonar-scanner-4.3.0.2102-linux/bin/sonar-scanner.bat -D"sonar.projectKey=D0641593" -D"sonar.sources=." -D"sonar.host.url=http://140.134.24.239:9000" -D"sonar.login=b6eea023dbf8bc6f615098e40c9148cd50eb7d27"
