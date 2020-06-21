@@ -15,4 +15,4 @@ install:
 # command to run tests
 script: 
   - python ./PointCalculationTest.py
-  - sonar-scanner
+  - sonar-scanner -Dsonar.project="D0641593"
