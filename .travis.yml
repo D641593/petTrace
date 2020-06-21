@@ -7,7 +7,7 @@ cache:
 # command to install dependencies
 before_install:
   - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.3.0.2102-linux.zip
-  - unzip sonar-scanner-cli-3.3.0.1492-linux.zip -d /tmp
+  - unzip sonar-scanner-cli-4.3.0.2102-linux.zip -d /tmp
 install:
   - pip install -r requirements.txt
 # command to run tests
