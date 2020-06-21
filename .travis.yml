@@ -7,7 +7,7 @@ cache:
 # command to install dependencies
 addons:
   sonarcloud:
-    organization: SONAR_HOST_URL # 
+    organization: "D0641593" # 
     token:
       secure: SONAR_TOKEN # encrypted value of your token
 install:
