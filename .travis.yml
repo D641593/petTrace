@@ -6,8 +6,8 @@ cache:
     - $HOME/.cache/pip
 # command to install dependencies
 addons:
-  sonarcloud:
-    #organization: "D0641593" # 
+  sonarqube:
+    organization: "D0641593" # 
     token:
       secure: SONAR_TOKEN # encrypted value of your token
 install:
@@ -15,4 +15,4 @@ install:
 # command to run tests
 script: 
   - python ./PointCalculationTest.py
-  - sonar-scanner.bat -D"sonar.projectKey=D0641593" -D"sonar.sources=." -D"sonar.host.url=http://140.134.24.239:9000" -D"sonar.login=b6eea023dbf8bc6f615098e40c9148cd50eb7d27"
+  - sonar-scanner.bat -Dsonar.projectKey="D0641593" -D"sonar.sources=." -D"sonar.host.url=http://140.134.24.239:9000" -D"sonar.login=b6eea023dbf8bc6f615098e40c9148cd50eb7d27"
