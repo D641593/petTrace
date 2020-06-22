@@ -82,7 +82,6 @@ class catEmulatorTest(unittest.TestCase):
         time.sleep(1)
         self.catE.flag = False
         self.catE.join()
-        
 
 # unittest.main()
 
