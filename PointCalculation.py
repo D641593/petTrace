@@ -41,7 +41,7 @@ class pointCalculation():
                     tmp.clear()
         return ans
     
-    def chech_Tri(self,a,b,c):
+    def check_Tri(self,a,b,c):
         if a + b >= c and b + c >= a and a + c >= b:
             return True
         return False
@@ -83,7 +83,7 @@ class pointCalculation():
                 dis_between_start_end = self.get_anchor_dis(x_off,y_off)
                 dis_start = self.anchors_dis[startAnchor]
                 dis_end = self.anchors_dis[endAnchor]
-                if not self.chech_Tri(dis_between_start_end,dis_start,dis_end):
+                if not self.check_Tri(dis_between_start_end,dis_start,dis_end):
                     try:
                         newDis = self.fitTriangle(dis_between_start_end,dis_start,dis_end)
                         dis_start = newDis[1]

@@ -10,43 +10,28 @@ import math
 #上下相反是由於兩個視窗的(0,0)不同，貓貓在左上角，路徑在左下角
 #關閉請直接關閉貓貓視窗，路徑視窗會自動關閉
 
-# anchor_x = [200 , 400 , 400 , 200]
-# anchor_y = [312 , 312 , 112 , 112]
-# anchor_y = [200 , 200 , 400 , 400]
-anchor_x = [400,400,200,200]
-anchor_y = [400,200,200,400]
-
-def get_dis(x_off,y_off):
-    return round(math.sqrt(math.pow(x_off,2) + math.pow(y_off,2)),2)
-
-def cal_Dis(x,y):
-    ans = []
-    for i in range(4):
-        dis = get_dis((anchor_x[i] - x),(anchor_y[i] - y))
-        if dis == 0:
-            dis += 1
-        ans.append(dis)
-    return ans
-
 anchor_DisQ = queue.Queue()
 
 class catEmulatorT(threading.Thread):
-    def __init__(self,name = "catEmulator",flag = True):
+    def __init__(self,name = "catEmulator",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400],X = 300,Y = 300):
         threading.Thread.__init__(self)
         self.name = name
         self.flag = flag
+        self.anchor_x = anchor_x
+        self.anchor_y = anchor_y
+        self.X = X
+        self.Y = Y
+        self.height = 64*8
+        self.width = 64*10
 
     def run(self):
 
         pygame.init()
         pygame.font.init()
 
-        width,height = 64*10, 64*8
-        screen = pygame.display.set_mode((width, height))
+        screen = pygame.display.set_mode((self.width, self.height))
         pygame.display.set_caption('Pygame Cat Emulator')
         pygame.mouse.set_visible(0)
-        cur_X = 300
-        cur_Y = 300
 
         keyPressed = [False,False,False,False]
 
@@ -57,8 +42,8 @@ class catEmulatorT(threading.Thread):
             # print("doing a function")
             screen.fill((255,255,255)) # 清空畫面
             for i in range(4):
-                screen.blit(marker,(anchor_x[i],anchor_y[i]))
-            screen.blit(cat,(cur_X,cur_Y)) # 顯示貓
+                screen.blit(marker,(self.anchor_x[i],self.anchor_y[i]))
+            screen.blit(cat,(self.X,self.Y)) # 顯示貓
             pygame.display.flip() #更新畫面
 
             for event in pygame.event.get():
@@ -85,18 +70,40 @@ class catEmulatorT(threading.Thread):
                     elif event.key == pygame.K_RIGHT:
                         keyPressed[3] = False
 
-            if keyPressed[0]:
-                if cur_Y > 0:
-                    cur_Y -= 15
-            elif keyPressed[1]:
-                if cur_Y < height - 64:
-                    cur_Y += 15
-            elif keyPressed[2]:
-                if cur_X > 0:
-                    cur_X -= 15
-            elif keyPressed[3]:
-                if cur_X < width - 64:
-                    cur_X += 15
-            anchor_DisQ.put(cal_Dis(cur_X,cur_Y))
-            # print(cal_Dis(cur_X,cur_Y))
+            self.move(keyPressed)
+            anchor_DisQ.put(self.cal_dis(self.X,self.Y))
+            # print(self.cal_dis(self.X,self.Y))
             time.sleep(0.1)
+
+        pygame.quit()
+
+    def move(self,keyPressed:list):
+        if len(keyPressed) != 4:
+            raise TypeError("Error length of keyPressed",keyPressed)
+        for i in keyPressed:
+            if type(i) is not bool:
+                raise TypeError("keyPressed is not a boolean list",keyPressed)
+        if keyPressed[0]:
+            if self.Y > 0:
+                self.Y -= 15
+        elif keyPressed[1]:
+            if self.Y < self.height - 64:
+                self.Y += 15
+        elif keyPressed[2]:
+            if self.X > 0:
+                self.X -= 15
+        elif keyPressed[3]:
+            if self.X < self.width - 64:
+                self.X += 15
+
+    def get_dis(self,x_off,y_off):
+        return round(math.sqrt(math.pow(x_off,2) + math.pow(y_off,2)),2)
+
+    def cal_dis(self,x,y):
+        ans = []
+        for i in range(4):
+            dis = self.get_dis((self.anchor_x[i] - x),(self.anchor_y[i] - y))
+            if dis == 0:
+                dis += 1
+            ans.append(dis)
+        return ans

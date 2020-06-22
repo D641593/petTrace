@@ -170,7 +170,22 @@ class PCtest(unittest.TestCase):
     def test_fitTriangleError3(self):
         with self.assertRaises(ValueError):
             self.PC.fitTriangle(50,160,70)
+
+    def test_check_Tri1(self):
+        res = self.PC.check_Tri(10,40,30)
+        self.assertTrue(res)
     
-if __name__ == "__main__":
-        unittest.main()  # py .\PointCalculationTest.py -v         -->      use -v to get more information
+    def test_check_Tri2(self):
+        res = self.PC.check_Tri(5,15,30)
+        self.assertTrue(not res)
+    
+    def test_check_Tri3(self):
+        res = self.PC.check_Tri(60,10,30)
+        self.assertTrue(not res)
+
+    def test_check_Tri4(self):
+        res = self.PC.check_Tri(10,50,30)
+        self.assertTrue(not res)
+    
+unittest.main()  # py .\PointCalculationTest.py -v         -->      use -v to get more information
 
