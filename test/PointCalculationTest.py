@@ -158,6 +158,11 @@ class PCtest(unittest.TestCase):
         res = self.PC.fitTriangle(70,70,160)
         ans = [70,80,150]
         self.assertEqual(res,ans)
+    
+    def test_fitTriangle4(self):
+        res = self.PC.fitTriangle(80,80,160)
+        ans = [80,80,160]
+        self.assertEqual(res,ans)
 
     def test_fitTriangleError1(self):
         with self.assertRaises(ValueError):
@@ -187,5 +192,5 @@ class PCtest(unittest.TestCase):
         res = self.PC.check_Tri(10,50,30)
         self.assertTrue(not res)
     
-unittest.main()  # py .\PointCalculationTest.py -v         -->      use -v to get more information
+# unittest.main()  # py .\PointCalculationTest.py -v         -->      use -v to get more information
 

@@ -18,4 +18,4 @@ class catTraceTest(unittest.TestCase):
         self.catT.flag = False
         self.catT.join()
 
-unittest.main()
+# unittest.main()

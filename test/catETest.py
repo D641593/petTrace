@@ -84,5 +84,5 @@ class catEmulatorTest(unittest.TestCase):
         self.catE.join()
         
 
-unittest.main()
+# unittest.main()
 
