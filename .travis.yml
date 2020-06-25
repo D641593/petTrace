@@ -9,7 +9,7 @@ addons:
   sonarcloud:
     organization: "D641593"
     token:
-      secure: "e2dea83f500f7ac387786de0abbf309b85a6d988"
+      secure: "a82b82382048e230a8f4889588682a2396308f40"
 # command to install dependencies
 # before_install:
 #   - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.3.0.2102-linux.zip
