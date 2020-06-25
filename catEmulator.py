@@ -82,18 +82,14 @@ class CatEmulatorT(threading.Thread):
         for i in keypressed:
             if type(i) is not bool:
                 raise TypeError("keypressed is not a boolean list",keypressed)
-        if keypressed[0]:
-            if self.y > 0:
-                self.y -= 15
-        elif keypressed[1]:
-            if self.y < self.height - 64:
-                self.y += 15
-        elif keypressed[2]:
-            if self.x > 0:
-                self.x -= 15
-        elif keypressed[3]:
-            if self.x < self.width - 64:
-                self.x += 15
+        if keypressed[0] and self.y > 0:
+            self.y -= 15
+        elif keypressed[1] and self.y < self.height - 64:
+            self.y += 15
+        elif keypressed[2] and self.x > 0 :
+            self.x -= 15
+        elif keypressed[3] and self.x < self.width - 64:
+            self.x += 15
 
     def get_dis(self,x_off,y_off):
         return round(math.sqrt(math.pow(x_off,2) + math.pow(y_off,2)),2)

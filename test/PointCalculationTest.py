@@ -39,7 +39,7 @@ class PCtest(unittest.TestCase):
             self.PC.get_group(2)
 
     def test_get_cal_array(self):
-        Dis = [141.4]*3
+        dis = [141.4]*3
         self.PC.set_dis(dis)
         res = self.PC.get_cal_array(self.PC.get_group(3))
         ans = [0,0]

@@ -1,4 +1,4 @@
-from catEmulator import *
+from catEmulator import CatEmulatorT
 import unittest
 import time
 
