@@ -3,6 +3,7 @@ from pygame.locals import *
 import queue
 import threading
 import math
+import time
 
 #使用說明
 #使用鍵盤"上下左右"控制貓貓
