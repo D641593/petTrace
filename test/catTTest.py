@@ -10,8 +10,8 @@ class catTraceTest(unittest.TestCase):
     def test_run(self):
         self.catE.start()
         self.catT.start()
-        anchor_DisQ.put([50,50,50,50])
-        anchor_DisQ.put([141,123,208,156])
+        anchor_disq.put([50,50,50,50])
+        anchor_disq.put([141,123,208,156])
         time.sleep(2)
         self.catE.flag = False
         self.catE.join()

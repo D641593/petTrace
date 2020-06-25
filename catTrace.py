@@ -5,12 +5,12 @@ from catEmulator import anchor_disq
 import pygame
 
 class CatTraceT(threading.Thread):
-    def __init__(self,name = "catTrace",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400]):
+    def __init__(self,name = "catTrace",flag = True):
         threading.Thread.__init__(self)
         self.name = name
         self.flag = flag
-        self.anchor_x = anchor_x
-        self.anchor_y = anchor_y
+        self.anchor_x = [400,400,200,200]
+        self.anchor_y = [400,200,200,400]
         self.pc = PointCalculation(self.anchor_x,self.anchor_y)
         self.anchorsGroup = self.pc.get_group(len(self.anchor_x))
         self.colors = ["blue","black","green","purple"]

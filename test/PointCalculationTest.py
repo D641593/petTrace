@@ -144,37 +144,37 @@ class PCtest(unittest.TestCase):
             points = [[x,y],[x,-y],[-x,-y],[-2*x,y]]
             self.PC.get_close_point(points)
 
-    def test_fitTriangle1(self):
-        res = self.PC.fitTriangle(160,70,70)
+    def test_fit_triangle1(self):
+        res = self.PC.fit_triangle(160,70,70)
         ans = [160,80,80]
         self.assertEqual(res,ans)
     
-    def test_fitTriangle2(self):
-        res = self.PC.fitTriangle(70,160,70)
+    def test_fit_triangle2(self):
+        res = self.PC.fit_triangle(70,160,70)
         ans = [70,150,80]
         self.assertEqual(res,ans)
 
-    def test_fitTriangle3(self):
-        res = self.PC.fitTriangle(70,70,160)
+    def test_fit_triangle3(self):
+        res = self.PC.fit_triangle(70,70,160)
         ans = [70,80,150]
         self.assertEqual(res,ans)
     
-    def test_fitTriangle4(self):
-        res = self.PC.fitTriangle(80,80,160)
+    def test_fit_triangle4(self):
+        res = self.PC.fit_triangle(80,80,160)
         ans = [80,80,160]
         self.assertEqual(res,ans)
 
-    def test_fitTriangleError1(self):
+    def test_fit_triangleError1(self):
         with self.assertRaises(ValueError):
-            self.PC.fitTriangle(50,70,160)
+            self.PC.fit_triangle(50,70,160)
     
-    def test_fitTriangleError2(self):
+    def test_fit_triangleError2(self):
         with self.assertRaises(ValueError):
-            self.PC.fitTriangle(160,50,70)
+            self.PC.fit_triangle(160,50,70)
 
-    def test_fitTriangleError3(self):
+    def test_fit_triangleError3(self):
         with self.assertRaises(ValueError):
-            self.PC.fitTriangle(50,160,70)
+            self.PC.fit_triangle(50,160,70)
 
     def test_check_Tri1(self):
         res = self.PC.check_Tri(10,40,30)

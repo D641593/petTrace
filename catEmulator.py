@@ -1,5 +1,4 @@
 import pygame, time
-from pygame.locals import *
 import queue
 import threading
 import math
@@ -14,12 +13,12 @@ import time
 anchor_disq = queue.Queue()
 
 class CatEmulatorT(threading.Thread):
-    def __init__(self,name = "catEmulator",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400],x = 300,y = 300):
+    def __init__(self,name = "catEmulator",flag = True,x = 300,y = 300):
         threading.Thread.__init__(self)
         self.name = name
         self.flag = flag
-        self.anchor_x = anchor_x
-        self.anchor_y = anchor_y
+        self.anchor_x = [400,400,200,200]
+        self.anchor_y = [400,200,200,400]
         self.x = x
         self.y = y
         self.height = 64*8

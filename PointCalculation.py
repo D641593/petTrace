@@ -73,21 +73,21 @@ class PointCalculation():
         constlist = []
         paraarray = []
         paratmp = []
-        ansPoint = []
+        anspoint = []
         for group in anchor_groups:
-            startAnchor = group[0]
+            start_anchor = group[0]
             for i in group[1:]:
-                endAnchor = i
-                x_off = self.anchors_x[startAnchor] - self.anchors_x[endAnchor]
-                y_off = self.anchors_y[startAnchor] - self.anchors_y[endAnchor]
+                end_anchor = i
+                x_off = self.anchors_x[start_anchor] - self.anchors_x[end_anchor]
+                y_off = self.anchors_y[start_anchor] - self.anchors_y[end_anchor]
                 dis_between_start_end = self.get_anchor_dis(x_off,y_off)
-                dis_start = self.anchors_dis[startAnchor]
-                dis_end = self.anchors_dis[endAnchor]
+                dis_start = self.anchors_dis[start_anchor]
+                dis_end = self.anchors_dis[end_anchor]
                 if not self.check_tri(dis_between_start_end,dis_start,dis_end):
                     try:
-                        newDis = self.fit_triangle(dis_between_start_end,dis_start,dis_end)
-                        dis_start = newDis[1]
-                        dis_end = newDis[2]
+                        newdis = self.fit_triangle(dis_between_start_end,dis_start,dis_end)
+                        dis_start = newdis[1]
+                        dis_end = newdis[2]
                     except ValueError as e:
                         print(repr(e))
                         return None
@@ -95,8 +95,8 @@ class PointCalculation():
                 proportion = round(cur_off / dis_between_start_end , 2)
                 cur_off_x = x_off * proportion
                 cur_off_y = y_off * proportion
-                point_x = self.anchors_x[startAnchor] - cur_off_x
-                point_y = self.anchors_y[startAnchor] - cur_off_y
+                point_x = self.anchors_x[start_anchor] - cur_off_x
+                point_y = self.anchors_y[start_anchor] - cur_off_y
                 if x_off == 0:
                     const = point_y
                     y_off = 1
@@ -115,8 +115,8 @@ class PointCalculation():
             b = np.mat(constlist).T
             constlist.clear()
             r = np.linalg.solve(A,b)
-            ansPoint.append([r[0,0],r[1,0]])
-        return ansPoint
+            anspoint.append([r[0,0],r[1,0]])
+        return anspoint
     
     def get_point(self,points):
         sum_x = 0
@@ -141,20 +141,20 @@ class PointCalculation():
                 if x + offset > test_x and test_x > x - offset and y + offset > test_y and test_y > y - offset:
                     mark[i] += 1
 
-        maxIndex = 0
+        max_index = 0
         biggest = 0
         for i in range(len(mark)):
             if mark[i] > biggest:
                 biggest = mark[i]
-                maxIndex = i
-        if mark[maxIndex] == 1:
+                max_index = i
+        if mark[max_index] == 1:
             raise ValueError("Bad Points",points)
-        sameFlag = 1
+        sameflag = 1
         value = mark[0]
         for i in range(len(mark)):
             if mark[i] != value:
-                sameFlag = 0
-        if sameFlag:
+                sameflag = 0
+        if sameflag:
             sum_x = 0
             sum_y = 0
             for i in range(len(points)):
@@ -162,8 +162,8 @@ class PointCalculation():
                 sum_y += points[i][1]
             return [ sum_x / len(points) , sum_y / len(points) ]
 
-        x = points[maxIndex][0]
-        y = points[maxIndex][1]
+        x = points[max_index][0]
+        y = points[max_index][1]
         sum_x = 0
         sum_y = 0
         for j in range(len(points)):
@@ -172,7 +172,7 @@ class PointCalculation():
             if x + offset > test_x and test_x > x - offset and y + offset > test_y and test_y > y - offset:
                 sum_x += points[j][0]
                 sum_y += points[j][1]
-        return [sum_x / mark[maxIndex]  , sum_y / mark[maxIndex]]
+        return [sum_x / mark[max_index]  , sum_y / mark[max_index]]
                         
                         
 
