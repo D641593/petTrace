@@ -1,13 +1,13 @@
 import unittest
-from PointCalculation import pointCalculation
+from PointCalculation import PointCalculation
 
 class PCtest(unittest.TestCase):
 
     anchors_x = [100,100,-100,-100]
     anchors_y = [100,-100,-100,100]
     anchors_dis = [70.7,70.7,70.7,70.7]
-    PC = pointCalculation()
-    PC.set_XandY(anchors_x,anchors_y)
+    PC = PointCalculation()
+    PC.set_xandy(anchors_x,anchors_y)
 
     def test_get_cos_1(self):
         res = self.PC.get_cos(1.73,2,1) # cos(30)
@@ -176,20 +176,20 @@ class PCtest(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.PC.fit_triangle(50,160,70)
 
-    def test_check_Tri1(self):
-        res = self.PC.check_Tri(10,40,30)
+    def test_check_tri1(self):
+        res = self.PC.check_tri(10,40,30)
         self.assertTrue(res)
     
-    def test_check_Tri2(self):
-        res = self.PC.check_Tri(5,15,30)
+    def test_check_tri2(self):
+        res = self.PC.check_tri(5,15,30)
         self.assertTrue(not res)
     
-    def test_check_Tri3(self):
-        res = self.PC.check_Tri(60,10,30)
+    def test_check_tri3(self):
+        res = self.PC.check_tri(60,10,30)
         self.assertTrue(not res)
 
-    def test_check_Tri4(self):
-        res = self.PC.check_Tri(10,50,30)
+    def test_check_tri4(self):
+        res = self.PC.check_tri(10,50,30)
         self.assertTrue(not res)
     
 # unittest.main()  # py .\PointCalculationTest.py -v         -->      use -v to get more information

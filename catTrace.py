@@ -35,7 +35,7 @@ class CatTraceT(threading.Thread):
         # ---------------------------   LocateByCode   -------------------------       
         while True:
             while anchor_disq.qsize() == 0 and self.flag:
-                print("waiting")
+                pass
             if not self.flag:
                 break
             tl.color("grey")
