@@ -4,7 +4,7 @@ import threading
 from catEmulator import anchor_DisQ
 import pygame
 
-class catTraceT(threading.Thread):
+class CatTraceT(threading.Thread):
     def __init__(self,name = "catTrace",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400]):
         threading.Thread.__init__(self)
         self.name = name

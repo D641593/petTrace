@@ -13,7 +13,7 @@ import time
 
 anchor_DisQ = queue.Queue()
 
-class catEmulatorT(threading.Thread):
+class CatEmulatorT(threading.Thread):
     def __init__(self,name = "catEmulator",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400],X = 300,Y = 300):
         threading.Thread.__init__(self)
         self.name = name
