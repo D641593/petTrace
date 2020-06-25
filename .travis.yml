@@ -4,10 +4,16 @@ python:
 cache:
   directories:
     - $HOME/.cache/pip
+
+addons:
+  sonarcloud:
+    organization: "D641593"
+    token:
+      secure: "e2dea83f500f7ac387786de0abbf309b85a6d988"
 # command to install dependencies
-before_install:
-  - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.3.0.2102-linux.zip
-  - unzip sonar-scanner-cli-4.3.0.2102-linux.zip -d /tmp
+# before_install:
+#   - wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.3.0.2102-linux.zip
+#   - unzip sonar-scanner-cli-4.3.0.2102-linux.zip -d /tmp
 install:
   - pip install -r requirements.txt
 # command to run tests
@@ -15,6 +21,7 @@ script:
   - coverage erase
   - coverage run -m --branch unittest discover -s test -p *Test.py
   - coverage xml -i
+  - sonar-scanner
   # - /tmp/sonar-scanner-4.3.0.2102-linux/bin/sonar-scanner -D"sonar.projectKey=D0641593" -D"sonar.sources=." 
   #   -D"sonar.host.url=http://140.134.24.239:9000" -D"sonar.login=b6eea023dbf8bc6f615098e40c9148cd50eb7d27"
   #   -D"sonar.python.coverage.reportPaths=./coverage.xml"
