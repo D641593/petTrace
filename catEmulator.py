@@ -11,17 +11,17 @@ import time
 #上下相反是由於兩個視窗的(0,0)不同，貓貓在左上角，路徑在左下角
 #關閉請直接關閉貓貓視窗，路徑視窗會自動關閉
 
-anchor_DisQ = queue.Queue()
+anchor_disq = queue.Queue()
 
 class CatEmulatorT(threading.Thread):
-    def __init__(self,name = "catEmulator",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400],X = 300,Y = 300):
+    def __init__(self,name = "catEmulator",flag = True,anchor_x = [400,400,200,200],anchor_y = [400,200,200,400],x = 300,y = 300):
         threading.Thread.__init__(self)
         self.name = name
         self.flag = flag
         self.anchor_x = anchor_x
         self.anchor_y = anchor_y
-        self.X = X
-        self.Y = Y
+        self.x = x
+        self.y = y
         self.height = 64*8
         self.width = 64*10
 
@@ -44,7 +44,7 @@ class CatEmulatorT(threading.Thread):
             screen.fill((255,255,255)) # 清空畫面
             for i in range(4):
                 screen.blit(marker,(self.anchor_x[i],self.anchor_y[i]))
-            screen.blit(cat,(self.X,self.Y)) # 顯示貓
+            screen.blit(cat,(self.x,self.y)) # 顯示貓
             pygame.display.flip() #更新畫面
 
             for event in pygame.event.get():
@@ -72,8 +72,7 @@ class CatEmulatorT(threading.Thread):
                         keyPressed[3] = False
 
             self.move(keyPressed)
-            anchor_DisQ.put(self.cal_dis(self.X,self.Y))
-            # print(self.cal_dis(self.X,self.Y))
+            anchor_disq.put(self.cal_dis(self.x,self.y))
             time.sleep(0.1)
 
         pygame.quit()
@@ -85,17 +84,17 @@ class CatEmulatorT(threading.Thread):
             if type(i) is not bool:
                 raise TypeError("keyPressed is not a boolean list",keyPressed)
         if keyPressed[0]:
-            if self.Y > 0:
-                self.Y -= 15
+            if self.y > 0:
+                self.y -= 15
         elif keyPressed[1]:
-            if self.Y < self.height - 64:
-                self.Y += 15
+            if self.y < self.height - 64:
+                self.y += 15
         elif keyPressed[2]:
-            if self.X > 0:
-                self.X -= 15
+            if self.x > 0:
+                self.x -= 15
         elif keyPressed[3]:
-            if self.X < self.width - 64:
-                self.X += 15
+            if self.x < self.width - 64:
+                self.x += 15
 
     def get_dis(self,x_off,y_off):
         return round(math.sqrt(math.pow(x_off,2) + math.pow(y_off,2)),2)

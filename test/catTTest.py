@@ -4,8 +4,8 @@ from catEmulator import *
 import time
 
 class catTraceTest(unittest.TestCase):
-    catT = catTraceT()
-    catE = catEmulatorT()
+    catT = CatTraceT()
+    catE = CatEmulatorT()
 
     def test_run(self):
         self.catE.start()

@@ -1,7 +1,7 @@
-from PointCalculation import pointCalculation
+from PointCalculation import PointCalculation
 import turtle as tl
 import threading
-from catEmulator import anchor_DisQ
+from catEmulator import anchor_disq
 import pygame
 
 class CatTraceT(threading.Thread):
@@ -11,7 +11,7 @@ class CatTraceT(threading.Thread):
         self.flag = flag
         self.anchor_x = anchor_x
         self.anchor_y = anchor_y
-        self.pc = pointCalculation(self.anchor_x,self.anchor_y)
+        self.pc = PointCalculation(self.anchor_x,self.anchor_y)
         self.anchorsGroup = self.pc.get_group(len(self.anchor_x))
         self.colors = ["blue","black","green","purple"]
 
@@ -34,7 +34,7 @@ class CatTraceT(threading.Thread):
 
         # ---------------------------   LocateByCode   -------------------------       
         while True:
-            while anchor_DisQ.qsize() == 0 and self.flag:
+            while anchor_disq.qsize() == 0 and self.flag:
                 pass
             if not self.flag:
                 break
@@ -42,7 +42,7 @@ class CatTraceT(threading.Thread):
             tl.stamp()
 
             
-            distances = anchor_DisQ.get()
+            distances = anchor_disq.get()
             self.pc.set_dis(distances)
             points = self.pc.get_cal_array(self.anchorsGroup)
             if points is None:

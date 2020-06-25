@@ -1,6 +1,6 @@
 import threading
-from catTrace import catTraceT
-from catEmulator import catEmulatorT
+from catTrace import CatTraceT
+from catEmulator import CatEmulatorT
 
 if __name__ == "__main__":
     catE = CatEmulatorT()
