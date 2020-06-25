@@ -48,12 +48,12 @@ class CatTraceT(threading.Thread):
             if points is None:
                 continue
             try:
-                finalPoint = self.pc.get_close_point(points)
+                final_point = self.pc.get_close_point(points)
             except ValueError as e:
                 print(repr(e))
                 continue
             tl.color("red")
-            tl.goto(finalPoint[0],-1 * finalPoint[1])
+            tl.goto(final_point[0],-1 * final_point[1])
             tl.stamp()
         
         # ---------------------------   LocateByCode   ------------------------- 

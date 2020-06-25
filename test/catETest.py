@@ -1,7 +1,8 @@
 from catEmulator import *
 import unittest
+import time
 
-class catEmulatorTest(unittest.TestCase):
+class CatEmulatorTest(unittest.TestCase):
     catE = CatEmulatorT() 
     def test_get_dis(self):
         res = self.catE.get_dis(3,4)
@@ -16,7 +17,7 @@ class catEmulatorTest(unittest.TestCase):
         keypressed = [True,False,False,False]
         self.catE.y = 300
         self.catE.move(keypressed)
-        self.assertEqual(self.catE.Y,285)
+        self.assertEqual(self.catE.y,285)
 
     def test_move1_Block(self):
         keypressed = [True,False,False,False]

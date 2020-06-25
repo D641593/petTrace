@@ -33,7 +33,7 @@ class CatEmulatorT(threading.Thread):
         pygame.display.set_caption('Pygame Cat Emulator')
         pygame.mouse.set_visible(0)
 
-        keyPressed = [False,False,False,False]
+        keypressed = [False,False,False,False]
 
         cat = pygame.image.load("cat.jpg")
         marker = pygame.image.load("marker.jpg")
@@ -52,46 +52,46 @@ class CatEmulatorT(threading.Thread):
                     pygame.quit()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_UP:
-                        keyPressed[0] = True
+                        keypressed[0] = True
                     elif event.key == pygame.K_DOWN:
-                        keyPressed[1] = True
+                        keypressed[1] = True
                     elif event.key == pygame.K_LEFT:
-                        keyPressed[2] = True
+                        keypressed[2] = True
                     elif event.key == pygame.K_RIGHT:
-                        keyPressed[3] = True
+                        keypressed[3] = True
 
                 if event.type == pygame.KEYUP:
                     if event.key == pygame.K_UP:
-                        keyPressed[0] = False
+                        keypressed[0] = False
                     elif event.key == pygame.K_DOWN:
-                        keyPressed[1] = False
+                        keypressed[1] = False
                     elif event.key == pygame.K_LEFT:
-                        keyPressed[2] = False
+                        keypressed[2] = False
                     elif event.key == pygame.K_RIGHT:
-                        keyPressed[3] = False
+                        keypressed[3] = False
 
-            self.move(keyPressed)
+            self.move(keypressed)
             anchor_disq.put(self.cal_dis(self.x,self.y))
             time.sleep(0.1)
 
         pygame.quit()
 
-    def move(self,keyPressed:list):
-        if len(keyPressed) != 4:
-            raise TypeError("Error length of keyPressed",keyPressed)
-        for i in keyPressed:
+    def move(self,keypressed:list):
+        if len(keypressed) != 4:
+            raise TypeError("Error length of keypressed",keypressed)
+        for i in keypressed:
             if type(i) is not bool:
-                raise TypeError("keyPressed is not a boolean list",keyPressed)
-        if keyPressed[0]:
+                raise TypeError("keypressed is not a boolean list",keypressed)
+        if keypressed[0]:
             if self.y > 0:
                 self.y -= 15
-        elif keyPressed[1]:
+        elif keypressed[1]:
             if self.y < self.height - 64:
                 self.y += 15
-        elif keyPressed[2]:
+        elif keypressed[2]:
             if self.x > 0:
                 self.x -= 15
-        elif keyPressed[3]:
+        elif keypressed[3]:
             if self.x < self.width - 64:
                 self.x += 15
 

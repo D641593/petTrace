@@ -3,7 +3,7 @@ from catTrace import *
 from catEmulator import *
 import time
 
-class catTraceTest(unittest.TestCase):
+class CatTraceTest(unittest.TestCase):
     catT = CatTraceT()
     catE = CatEmulatorT()
 
