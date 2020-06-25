@@ -1,6 +1,6 @@
 import unittest
 from catTrace import CatTraceT
-from catEmulator import CatEmulatorT
+from catEmulator import CatEmulatorT,anchor_disq
 import time
 
 class CatTraceTest(unittest.TestCase):
